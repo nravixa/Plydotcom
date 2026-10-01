@@ -70,20 +70,20 @@ export default function Header() {
           <a
             href="#home"
             onClick={(e) => scrollToSection(e, '#home')}
-            className="flex items-center gap-1.5 text-xl sm:text-2xl font-bold tracking-wider text-white group"
+            className="flex items-center gap-1.5 text-lg sm:text-2xl font-bold tracking-wider text-white group"
           >
             <span>PLY DOT COM</span>
-            <span className="w-2 h-2 rounded-full bg-[#D8B98A] group-hover:scale-125 transition-transform duration-300"></span>
+            <span className="hidden sm:inline-block w-2 h-2 rounded-full bg-[#D8B98A] group-hover:scale-125 transition-transform duration-300"></span>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-5 lg:space-x-8">
             {siteContent.navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="text-sm font-medium text-[#F6F1E8]/85 hover:text-[#D8B98A] transition-colors duration-200"
+                className="text-xs lg:text-sm font-medium text-[#F6F1E8]/85 hover:text-[#D8B98A] transition-colors duration-200"
               >
                 {link.label}
               </a>
@@ -102,22 +102,23 @@ export default function Header() {
           </div>
 
           {/* Mobile & Tablet Toggle Controls (< md) */}
-          <div className="flex md:hidden items-center gap-2">
-            <a
-              href={`tel:${siteContent.business.phoneTel}`}
-              className="inline-flex items-center justify-center p-2 rounded-full bg-[#D8B98A] text-[#2A1B14] hover:bg-[#c9a773] transition-colors"
-              aria-label="Call Now"
-            >
-              <Phone className="w-4 h-4 fill-current" />
-            </a>
+          <div className="flex md:hidden items-center">
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-[#D8B98A]/50"
+              className="p-1.5 text-white hover:opacity-80 transition-opacity focus:outline-none"
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <div className="w-6 h-4 flex flex-col justify-between" aria-hidden="true">
+                  <span className="w-full h-[2px] bg-white rounded-full"></span>
+                  <span className="w-full h-[2px] bg-white rounded-full"></span>
+                  <span className="w-full h-[2px] bg-white rounded-full"></span>
+                </div>
+              )}
             </button>
           </div>
         </div>

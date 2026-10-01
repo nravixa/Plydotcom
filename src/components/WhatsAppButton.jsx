@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { siteContent } from '../data/siteContent';
 
 export default function WhatsAppButton() {
-  const [showTooltip, setShowTooltip] = useState(true);
+  const [showTooltip, setShowTooltip] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const { business } = siteContent;
 
@@ -13,6 +13,7 @@ export default function WhatsAppButton() {
     const updateVisibility = () => {
       const aboutEl = document.getElementById('about');
       const whyUsEl = document.getElementById('why-us');
+      const contactEl = document.getElementById('contact');
 
       if (!aboutEl || !whyUsEl) {
         setIsVisible(false);
@@ -23,24 +24,26 @@ export default function WhatsAppButton() {
       const whyUsRect = whyUsEl.getBoundingClientRect();
       const windowHeight = window.innerHeight || document.documentElement.clientHeight;
 
-      // Visible starting from ABOUT PLY DOT COM (top of About is in/above 70% viewport)
-      const hasReachedAbout = aboutRect.top <= windowHeight * 0.7;
+      // 1. Starts appearing from the "ABOUT PLY DOT COM" section
+      // (Hidden on Hero; becomes visible when About top scrolls into/above 80% of viewport)
+      const hasReachedAbout = aboutRect.top <= windowHeight * 0.8;
 
-      // Remains visible through OUR PRODUCTS and WHY CHOOSE PLY DOT COM
-      // Disappears after WHY CHOOSE PLY DOT COM section ends
-      const isBeforeWhyUsEnds = whyUsRect.bottom >= 40;
+      // 2. Disappears after "WHY CHOOSE PLY DOT COM" section ends
+      // (Hidden when WhyUs bottom scrolls past or Contact section enters the viewport)
+      const contactTop = contactEl ? contactEl.getBoundingClientRect().top : Infinity;
+      const isBeforeWhyUsEnds = whyUsRect.bottom >= 40 && contactTop > windowHeight * 0.85;
 
       setIsVisible(hasReachedAbout && isBeforeWhyUsEnds);
     };
 
-    // Initial check
+    // Initial evaluation on mount
     updateVisibility();
 
     // Scroll and resize listeners
     window.addEventListener('scroll', updateVisibility, { passive: true });
     window.addEventListener('resize', updateVisibility, { passive: true });
 
-    // IntersectionObserver observing key boundary sections for instant notification
+    // IntersectionObserver across key sections for instant boundary detection
     const observer = new IntersectionObserver(
       () => {
         updateVisibility();
@@ -51,8 +54,8 @@ export default function WhatsAppButton() {
       }
     );
 
-    const sections = ['home', 'about', 'products', 'why-us', 'contact'];
-    sections.forEach((id) => {
+    const sectionIds = ['home', 'about', 'products', 'applications', 'why-us', 'contact'];
+    sectionIds.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
@@ -67,6 +70,7 @@ export default function WhatsAppButton() {
   return (
     <aside
       aria-label="WhatsApp Contact"
+      aria-hidden={!isVisible}
       className={`fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-40 flex items-center gap-3 transition-all duration-300 transform ${
         isVisible
           ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
@@ -94,7 +98,7 @@ export default function WhatsAppButton() {
         rel="noopener noreferrer"
         aria-label="Chat with Ply Dot Com on WhatsApp"
         tabIndex={isVisible ? 0 : -1}
-        className="w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group cursor-pointer ring-4 ring-white/50"
+        className="w-[52px] h-[52px] sm:w-14 sm:h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group cursor-pointer ring-2 sm:ring-4 ring-white/40"
       >
         <svg
           viewBox="0 0 24 24"

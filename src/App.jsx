@@ -7,6 +7,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Products from './components/Products';
+import Applications from './components/Applications';
 import WhyUs from './components/WhyUs';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -162,7 +163,7 @@ export default function App() {
         // Mobile (< 768px): Never hide products or content with opacity: 0 upfront
         mm.add('(max-width: 767px)', () => {
           // Products and cards remain naturally visible with opacity 1 at all times
-          gsap.set(['.product-card', '.why-us-item', '.about-image-container', '.about-text-container'], {
+          gsap.set(['.product-card', '.why-us-item', '.application-card', '.about-image-container', '.about-text-container'], {
             opacity: 1,
             clearProps: 'opacity,transform,visibility',
           });
@@ -198,6 +199,7 @@ export default function App() {
         <Hero onOpenEnquiry={handleOpenEnquiry} />
         <About />
         <Products onOpenEnquiry={handleOpenEnquiry} />
+        <Applications onOpenEnquiry={handleOpenEnquiry} />
         <WhyUs />
         <Contact />
       </main>

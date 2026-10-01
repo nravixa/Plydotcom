@@ -22,6 +22,7 @@ export const siteContent = {
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
     { label: "Products", href: "#products" },
+    { label: "Applications", href: "#applications" },
     { label: "Why Us", href: "#why-us" },
     { label: "Contact", href: "#contact" },
   ],
@@ -35,7 +36,12 @@ export const siteContent = {
     secondaryCta: "View Products",
     categories: ["Furniture", "Interiors", "Construction"],
     indicators: ["01", "02", "03", "04"],
-    bgImage: "/images/hero_interior.jpg"
+    bgImage: "/images/hero_interior.jpg",
+    bgMobileImage: "/images/hero_mobile_interior.jpg",
+    location: {
+      line1: "Sas - Parve,",
+      line2: "Pune"
+    }
   },
 
   about: {
@@ -77,7 +83,7 @@ export const siteContent = {
       {
         id: "waterproof-plywood",
         name: "Waterproof Plywood",
-        description: "Suitable for moisture-prone areas and long-lasting use.",
+        description: "Built to resist moisture, perfect for humid and outdoor spaces.",
         image: "/images/waterproof_ply.jpg",
         tags: ["BWP Grade", "Moisture Resistant", "Kitchen & Bath"]
       },
@@ -98,42 +104,88 @@ export const siteContent = {
     ]
   },
 
+  applications: {
+    badge: "APPLICATIONS",
+    heading: "Used in Multiple Spaces.",
+    description: "Our plywood solutions are crafted for versatile interior and construction applications.",
+    items: [
+      {
+        id: "furniture",
+        name: "Furniture",
+        image: "/images/app_furniture.jpg",
+        icon: "furniture"
+      },
+      {
+        id: "kitchen",
+        name: "Kitchen",
+        image: "/images/app_kitchen.jpg",
+        icon: "kitchen"
+      },
+      {
+        id: "wardrobe",
+        name: "Wardrobe",
+        image: "/images/app_wardrobe.jpg",
+        icon: "wardrobe"
+      },
+      {
+        id: "office",
+        name: "Office",
+        image: "/images/app_office.jpg",
+        icon: "office"
+      },
+      {
+        id: "interior-walls",
+        name: "Interior Walls",
+        image: "/images/app_walls.jpg",
+        icon: "walls"
+      },
+      {
+        id: "construction",
+        name: "Construction",
+        image: "/images/app_construction.jpg",
+        icon: "construction"
+      }
+    ]
+  },
+
   whyUs: {
-    badge: "WHY CHOOSE PLY DOT COM",
+    badge: "WHY CHOOSE US",
     heading: "Simple Reasons to Choose Us.",
     items: [
       {
         id: "quality-materials",
         title: "Quality Materials",
-        description: "Carefully selected plywood for reliable use.",
-        icon: "Gem"
+        description: "Carefully selected plywood for durable and lasting spaces.",
+        icon: "ShieldCheck"
       },
       {
         id: "multiple-options",
         title: "Multiple Options",
-        description: "A range of plywood for different needs.",
+        description: "A wide range of plywood types and finishes to suit every need and budget.",
         icon: "Layers"
       },
       {
         id: "reliable-service",
         title: "Reliable Service",
-        description: "Helpful guidance and hassle-free enquiry.",
+        description: "Friendly support and hassle-free assistance at every step.",
         icon: "Headphones"
       },
       {
         id: "convenient-location",
         title: "Convenient Location",
-        description: "Easily accessible at Sus – Pashan, Pune.",
+        description: "Easily accessible in Pune, with a smooth and convenient buying experience.",
         icon: "MapPin"
       }
     ],
-    bgImage: "/images/wood_planks.jpg"
+    bgImage: "/images/wood_planks.jpg",
+    showcaseImage: "/images/why_us_interior.jpg"
   },
 
   contact: {
-    badge: "VISIT PLY DOT COM",
+    badge: "GET IN TOUCH",
     heading: "Let's Build Better Spaces Together.",
-    subheading: "Get in touch for product enquiries, availability and pricing.",
-    storefrontImage: "/images/storefront.jpg"
+    subheading: "Get in touch for product enquiries, custom solutions or project discussions. Our team is here to help.",
+    storefrontImage: "/images/storefront.jpg",
+    mapImage: "/images/map_sus_pune.jpg"
   }
 };
