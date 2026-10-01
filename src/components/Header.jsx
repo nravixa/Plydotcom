@@ -19,6 +19,29 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close mobile menu on desktop resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768 && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [mobileMenuOpen]);
+
+  // Lock body scroll when mobile menu is open to prevent background scrolling
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
   const scrollToSection = (e, href) => {
     e.preventDefault();
     setMobileMenuOpen(false);
@@ -32,12 +55,16 @@ export default function Header() {
     <header
       id="main-header"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-[#2A1B14]/95 backdrop-blur-md py-3 shadow-lg border-b border-[#D8B98A]/20'
-          : 'bg-gradient-to-b from-[#2A1B14]/90 via-[#2A1B14]/60 to-transparent py-5'
+        isScrolled || mobileMenuOpen
+          ? 'bg-[#2A1B14] shadow-lg border-b border-[#D8B98A]/20'
+          : 'bg-gradient-to-b from-[#2A1B14]/95 via-[#2A1B14]/70 to-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-300 ${
+          isScrolled ? 'py-3' : 'py-3.5 sm:py-5'
+        }`}
+      >
         <div className="flex items-center justify-between">
           {/* Logo / Wordmark */}
           <a
@@ -63,8 +90,8 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Call CTA Button */}
-          <div className="hidden sm:flex items-center gap-4">
+          {/* Call CTA Button (Desktop >= md) */}
+          <div className="hidden md:flex items-center gap-4">
             <a
               href={`tel:${siteContent.business.phoneTel}`}
               className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#D8B98A] text-[#2A1B14] hover:bg-[#c9a773] text-sm font-semibold transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0"
@@ -74,11 +101,11 @@ export default function Header() {
             </a>
           </div>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Mobile & Tablet Toggle Controls (< md) */}
           <div className="flex md:hidden items-center gap-2">
             <a
               href={`tel:${siteContent.business.phoneTel}`}
-              className="inline-flex sm:hidden items-center justify-center p-2 rounded-full bg-[#D8B98A] text-[#2A1B14]"
+              className="inline-flex items-center justify-center p-2 rounded-full bg-[#D8B98A] text-[#2A1B14] hover:bg-[#c9a773] transition-colors"
               aria-label="Call Now"
             >
               <Phone className="w-4 h-4 fill-current" />
@@ -86,8 +113,9 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
-              aria-label="Toggle Navigation Menu"
+              className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-[#D8B98A]/50"
+              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -95,24 +123,25 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Drawer Navigation */}
+      {/* Mobile Drawer Navigation (< md) - Opens completely within viewport with vertical scroll */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#2A1B14] border-b border-[#D8B98A]/20 px-6 py-6 shadow-2xl animate-in slide-in-from-top duration-300">
-          <nav className="flex flex-col space-y-4">
+        <div className="md:hidden w-full bg-[#2A1B14] border-t border-[#D8B98A]/20 shadow-2xl max-h-[calc(100dvh-4.5rem)] overflow-y-auto overscroll-contain">
+          <nav className="flex flex-col px-5 sm:px-6 py-4 space-y-1">
             {siteContent.navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => scrollToSection(e, link.href)}
-                className="text-base font-medium text-[#F6F1E8] hover:text-[#D8B98A] py-2 border-b border-white/5"
+                className="text-base font-medium text-[#F6F1E8] hover:text-[#D8B98A] hover:bg-white/5 px-3 py-3 rounded-lg border-b border-white/5 transition-colors flex items-center justify-between"
               >
-                {link.label}
+                <span>{link.label}</span>
+                <span className="text-xs text-[#D8B98A]/60">&rarr;</span>
               </a>
             ))}
-            <div className="pt-2">
+            <div className="pt-3 pb-2">
               <a
                 href={`tel:${siteContent.business.phoneTel}`}
-                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#D8B98A] text-[#2A1B14] font-semibold text-center"
+                className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#D8B98A] text-[#2A1B14] font-semibold text-sm sm:text-base hover:bg-[#c9a773] transition-colors shadow-md text-center"
               >
                 <Phone className="w-4 h-4 fill-current" />
                 <span>Call {siteContent.business.phone}</span>

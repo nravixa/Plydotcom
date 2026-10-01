@@ -43,9 +43,12 @@ export default function EnquiryModal({ isOpen, onClose, selectedProduct }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+    <div
+      className="fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm p-4 sm:p-6 flex items-start sm:items-center justify-center py-6 sm:py-8"
+      onClick={onClose}
+    >
       <div
-        className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-[#D8B98A]/40 overflow-hidden animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-lg my-auto bg-white rounded-2xl shadow-2xl border border-[#D8B98A]/40 overflow-hidden animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

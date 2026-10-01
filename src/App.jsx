@@ -67,96 +67,118 @@ export default function App() {
       if (!prefersReducedMotion) {
         // Hero entrance stagger
         gsap.from('.hero-anim-item', {
-          y: 30,
+          y: 25,
           opacity: 0,
           duration: 0.8,
-          stagger: 0.12,
-          ease: 'power3.out',
-          delay: 0.2,
-        });
-
-        // About section reveal
-        gsap.from('.about-image-container', {
-          scrollTrigger: {
-            trigger: '#about',
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-          x: -30,
-          opacity: 0,
-          duration: 0.85,
-          ease: 'power2.out',
-        });
-
-        gsap.from('.about-text-container', {
-          scrollTrigger: {
-            trigger: '#about',
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-          x: 30,
-          opacity: 0,
-          duration: 0.85,
-          ease: 'power2.out',
-        });
-
-        // Product cards stagger reveal
-        gsap.from('.product-card', {
-          scrollTrigger: {
-            trigger: '#products',
-            start: 'top 75%',
-            toggleActions: 'play none none none',
-          },
-          y: 35,
-          opacity: 0,
-          duration: 0.7,
           stagger: 0.1,
-          ease: 'power2.out',
+          ease: 'power3.out',
+          delay: 0.15,
         });
 
-        // Why Choose Us cards stagger
-        gsap.from('.why-us-item', {
-          scrollTrigger: {
-            trigger: '#why-us',
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-          y: 25,
-          opacity: 0,
-          duration: 0.65,
-          stagger: 0.09,
-          ease: 'power2.out',
+        // Use matchMedia to tailor animations for Desktop/Tablet vs Mobile
+        const mm = gsap.matchMedia();
+
+        // Tablet & Desktop (>= 768px)
+        mm.add('(min-width: 768px)', () => {
+          gsap.from('.about-image-container', {
+            scrollTrigger: {
+              trigger: '#about',
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+            x: -30,
+            opacity: 0,
+            duration: 0.85,
+            ease: 'power2.out',
+          });
+
+          gsap.from('.about-text-container', {
+            scrollTrigger: {
+              trigger: '#about',
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+            x: 30,
+            opacity: 0,
+            duration: 0.85,
+            ease: 'power2.out',
+          });
+
+          // Product cards stagger reveal on desktop
+          gsap.from('.product-card', {
+            scrollTrigger: {
+              trigger: '#products',
+              start: 'top 75%',
+              toggleActions: 'play none none none',
+            },
+            y: 35,
+            opacity: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: 'power2.out',
+          });
+
+          // Why Choose Us cards stagger
+          gsap.from('.why-us-item', {
+            scrollTrigger: {
+              trigger: '#why-us',
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+            y: 25,
+            opacity: 0,
+            duration: 0.65,
+            stagger: 0.09,
+            ease: 'power2.out',
+          });
+
+          // Contact block reveal
+          gsap.from('.contact-text-block', {
+            scrollTrigger: {
+              trigger: '#contact',
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+            y: 25,
+            opacity: 0,
+            duration: 0.75,
+            ease: 'power2.out',
+          });
+
+          gsap.from('.contact-info-block', {
+            scrollTrigger: {
+              trigger: '#contact',
+              start: 'top 80%',
+              toggleActions: 'play none none none',
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            delay: 0.1,
+            ease: 'power2.out',
+          });
         });
 
-        // Contact block reveal
-        gsap.from('.contact-text-block', {
-          scrollTrigger: {
-            trigger: '#contact',
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-          y: 25,
-          opacity: 0,
-          duration: 0.75,
-          ease: 'power2.out',
-        });
-
-        gsap.from('.contact-info-block', {
-          scrollTrigger: {
-            trigger: '#contact',
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-          y: 30,
-          opacity: 0,
-          duration: 0.8,
-          delay: 0.1,
-          ease: 'power2.out',
+        // Mobile (< 768px): Never hide products or content with opacity: 0 upfront
+        mm.add('(max-width: 767px)', () => {
+          // Products and cards remain naturally visible with opacity 1 at all times
+          gsap.set(['.product-card', '.why-us-item', '.about-image-container', '.about-text-container'], {
+            opacity: 1,
+            clearProps: 'opacity,transform,visibility',
+          });
         });
       }
     }, mainRef);
 
+    const handleWindowLoad = () => {
+      ScrollTrigger.refresh();
+      if (lenis) lenis.resize();
+    };
+
+    window.addEventListener('load', handleWindowLoad);
+
     return () => {
+      window.removeEventListener('load', handleWindowLoad);
       ctx.revert();
       if (rafId) cancelAnimationFrame(rafId);
       if (lenis) {

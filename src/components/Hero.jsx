@@ -42,7 +42,7 @@ export default function Hero({ onOpenEnquiry }) {
           </div>
 
           {/* Business Brand Heading */}
-          <h1 className="hero-anim-item text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-3">
+          <h1 className="hero-anim-item text-3xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-3">
             PLY DOT COM
           </h1>
 
@@ -57,10 +57,10 @@ export default function Hero({ onOpenEnquiry }) {
           </p>
 
           {/* Action Buttons */}
-          <div className="hero-anim-item flex flex-wrap items-center gap-4 sm:gap-5">
+          <div className="hero-anim-item flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3.5 sm:gap-5">
             <a
               href={`tel:${business.phoneTel}`}
-              className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-[#D8B98A] text-[#2A1B14] font-semibold text-sm sm:text-base hover:bg-[#c9a773] transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full bg-[#D8B98A] text-[#2A1B14] font-semibold text-sm sm:text-base hover:bg-[#c9a773] transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
               <Phone className="w-4 h-4 fill-current" />
               <span>{hero.primaryCta}</span>
@@ -69,7 +69,7 @@ export default function Hero({ onOpenEnquiry }) {
             <a
               href="#products"
               onClick={scrollToProducts}
-              className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#F6F1E8] border border-white/25 font-semibold text-sm sm:text-base backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-[#F6F1E8] border border-white/25 font-semibold text-sm sm:text-base backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
               <span>{hero.secondaryCta}</span>
               <ArrowRight className="w-4 h-4" />

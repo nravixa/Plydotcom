@@ -12,11 +12,11 @@ export default function Products({ onOpenEnquiry }) {
   };
 
   return (
-    <section id="products" className="py-20 sm:py-28 bg-[#FAF6EF] relative border-y border-[#D8B98A]/30">
+    <section id="products" className="py-16 sm:py-28 bg-[#FAF6EF] relative border-y border-[#D8B98A]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-14">
           <div className="max-w-2xl">
             <span className="text-xs font-bold tracking-widest text-[#6B4226] uppercase block mb-2">
               {products.badge}
@@ -24,7 +24,7 @@ export default function Products({ onOpenEnquiry }) {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2A1B14] tracking-tight mb-3">
               {products.heading}
             </h2>
-            <p className="text-base text-[#6E655F]">
+            <p className="text-sm sm:text-base text-[#6E655F]">
               {products.subheading}
             </p>
           </div>
@@ -32,7 +32,7 @@ export default function Products({ onOpenEnquiry }) {
           <div className="shrink-0">
             <button
               onClick={() => onOpenEnquiry(null)}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#6B4226] text-[#6B4226] hover:bg-[#6B4226] hover:text-white font-semibold text-sm transition-all duration-300 shadow-warm-sm hover:shadow-warm-md"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-[#6B4226] text-[#6B4226] hover:bg-[#6B4226] hover:text-white font-semibold text-sm transition-all duration-300 shadow-warm-sm hover:shadow-warm-md cursor-pointer"
             >
               <span>View All Products</span>
               <ArrowRight className="w-4 h-4" />

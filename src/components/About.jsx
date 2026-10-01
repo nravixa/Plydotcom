@@ -61,11 +61,11 @@ export default function About() {
             </p>
 
             {/* 3 Core Highlights */}
-            <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-4 border-t border-[#D8B98A]/30">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6 pt-4 border-t border-[#D8B98A]/30">
               {about.highlights.map((item) => (
                 <div
                   key={item.id}
-                  className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-2 sm:gap-3 p-3 rounded-xl bg-white/50 border border-[#D8B98A]/25 shadow-warm-sm"
+                  className="flex flex-row sm:flex-col lg:flex-row items-center sm:items-start text-left gap-3 p-3 rounded-xl bg-white/50 border border-[#D8B98A]/25 shadow-warm-sm"
                 >
                   <div className="p-2 rounded-lg bg-[#FAF6EF] border border-[#D8B98A]/40 text-[#6B4226] shrink-0">
                     {getIcon(item.icon)}

@@ -119,12 +119,12 @@ export default function Contact() {
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end justify-between p-4">
-                  <span className="text-xs font-semibold text-white/90 bg-black/40 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 flex items-center gap-1.5">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex flex-wrap sm:flex-nowrap items-end justify-between gap-2 p-3 sm:p-4">
+                  <span className="text-xs font-semibold text-white/90 bg-black/40 backdrop-blur-md px-2.5 sm:px-3 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shrink-0">
                     <MapPin className="w-3.5 h-3.5 text-[#D8B98A]" />
-                    Sus - Pashan Branch, Pune
+                    <span>Sus - Pashan Branch, Pune</span>
                   </span>
-                  <span className="text-xs font-semibold text-[#D8B98A] bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-[#D8B98A]/30 flex items-center gap-1 group-hover:bg-[#6B4226] group-hover:text-white transition-colors">
+                  <span className="text-xs font-semibold text-[#D8B98A] bg-black/60 backdrop-blur-md px-2.5 sm:px-3 py-1 rounded-full border border-[#D8B98A]/30 flex items-center gap-1 group-hover:bg-[#6B4226] group-hover:text-white transition-colors shrink-0">
                     <span>View on Maps</span>
                     <ExternalLink className="w-3 h-3" />
                   </span>
