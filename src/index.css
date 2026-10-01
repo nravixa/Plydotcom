@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-dark: #2A1B14;
+    --color-walnut: #6B4226;
+    --color-walnut-light: #8B5A2B;
+    --color-beige: #D8B98A;
+    --color-cream: #F6F1E8;
+    --color-cream-card: #FAF6EF;
+    --color-cream-light: #FDFBF7;
+    --color-gold: #B88A4A;
+    --color-charcoal: #222222;
+    --color-muted: #6E655F;
+    --color-border: #E6D8C3;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    scroll-behavior: smooth;
+    background-color: #F6F1E8;
+    color: #222222;
+  }
+
+  body {
+    background-color: #F6F1E8;
+    color: #222222;
+    min-height: 100vh;
+  }
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom Utilities */
+.bg-cream {
+  background-color: #F6F1E8;
+}
+
+.bg-cream-card {
+  background-color: #FAF6EF;
+}
+
+.bg-dark-walnut {
+  background-color: #2A1B14;
+}
+
+.bg-walnut {
+  background-color: #6B4226;
+}
+
+.bg-gold {
+  background-color: #B88A4A;
+}
+
+.text-dark-walnut {
+  color: #2A1B14;
+}
+
+.text-walnut {
+  color: #6B4226;
+}
+
+.text-gold {
+  color: #B88A4A;
+}
+
+.text-charcoal {
+  color: #222222;
+}
+
+.text-muted {
+  color: #6E655F;
+}
+
+.border-beige {
+  border-color: #D8B98A;
+}
+
+.border-cream-dark {
+  border-color: #E6D8C3;
+}
+
+/* Glassmorphism effects */
+.glass-header {
+  background-color: rgba(246, 241, 232, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-header-dark {
+  background-color: rgba(42, 27, 20, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-card {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Custom shadows */
+.shadow-warm-sm {
+  box-shadow: 0 2px 8px -2px rgba(42, 27, 20, 0.06), 0 1px 4px -1px rgba(42, 27, 20, 0.04);
+}
+
+.shadow-warm-md {
+  box-shadow: 0 10px 25px -5px rgba(42, 27, 20, 0.08), 0 6px 12px -3px rgba(42, 27, 20, 0.04);
+}
+
+.shadow-warm-lg {
+  box-shadow: 0 20px 35px -10px rgba(42, 27, 20, 0.12), 0 10px 16px -5px rgba(42, 27, 20, 0.06);
+}
+
+/* Wood grain subtle overlay texture */
+.subtle-wood-texture {
+  background-image: radial-gradient(#6B4226 0.5px, transparent 0.5px), radial-gradient(#6B4226 0.5px, #F6F1E8 0.5px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  opacity: 0.02;
+}
+
+/* Animations helper */
+@keyframes pulse-subtle {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
